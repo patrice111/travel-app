@@ -1,0 +1,52 @@
+.zip,
+.feel {
+    margin-bottom: 40px;
+}
+
+#zip {
+    margin-right: 20px;
+    color: #5a5bb5;
+    background-color: #fed3da;
+    border: 2px solid #6667ba;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px #6667ba;
+}
+
+
+
+input,
+textarea {
+    vertical-align: middle;
+    color: #5a5bb5;
+    background-color: #fed3da;
+    border: 2px solid #6667ba;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px #6667ba;
+    
+}
+
+::placeholder {
+    color: #c979ac;
+}
+
+input,
+.myInput {
+    padding: 10px;
+    font-size: large;
+}
+
+button {
+    font-size: x-large;
+    border-radius: 5px;
+    padding: 25px;
+    margin-bottom: 40px;
+    color: #fed3da;
+    background-color: #6667ba;
+    box-shadow: 3px 3px 5px #6667ba;  
+}
+
+button:hover{
+    transition: all 0.3s ease-in-out;
+    color: #fff;
+    background-color: #ea81a9;
+}
