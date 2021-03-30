@@ -3,9 +3,10 @@ const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin');
-
+//src\client\index.js
+console.log("path", path.dirname);
 module.exports = {
-    entry: './src/client/index.js',
+    entry:  './src/client/index.js',
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
@@ -23,7 +24,12 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-           }
+           },
+           {
+            test: /\.(jpe?g|png|gif|svg)$/i, 
+            loader: 'file-loader',
+            options: {
+            }}
         ]
     },
     plugins: [
