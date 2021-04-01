@@ -39,7 +39,7 @@ function handleSubmit(event) {
             .catch(err => console.log('er in weatherbit api==>>', err));
         }
     })
-    .catch(err => console.log('err==>>', err));
+
 }
 
     

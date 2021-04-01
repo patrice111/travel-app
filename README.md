@@ -1,5 +1,10 @@
 # UDACITY - FEND Capstone - Travel App
 
+<img src='src\client\media\trip-pic.JPG' alt='pic of trip'>
+
+
+
+
 FEND Capstone - Travel App
 
 ## Overview
@@ -7,6 +12,9 @@ You will be building a travel application. It’s common to pull basic data from
 
 ## Instructions
 The project will include a simple form where you enter the location you are traveling to and the date you are leaving. If the trip is within a week, you will get the current weather forecast. If the trip is in the future, you will get a predicted forecast. The OpenWeather API is fantastic but it doesn’t let you get future data for free and it’s not that flexible with what information you enter; we are going to use the Weatherbit API for you to see how another API accomplishes the same goals. Weatherbit API has one problem, it only takes in coordinates for weather data -- it’s that specific. So, we’ll need to get those coordinates from the Geonames API. Once we have all of this data, we’ll want to display an image of the location entered; for this, we will be using the Pixabay API.
+
+## How to use
+Go to Github, clone the repo. Once opened in the code editor of your choice, type npm i to install all dependencies. To access the site type npm run start and npm run build-dev. Once the site has populated in your browser, you'll be able to use the form. 
 
 ## Development Strategy
 It's very important that you plan your project before you start writing any code! Break your project down into small pieces of work and strategize your approach to each one. With these bite-sized amounts, it'll be easier to debug and fix any issues that appear.
