@@ -22,7 +22,7 @@
       
           <div class="trip-form">
             <div class="form-container">
-              <form method="post" id="weather-form" style="text-align: center;/*align-self: ;*/width: 300px; margin-right: auto; margin-left: auto;"> 
+              <form method="post" id="weather-form" class="form-weather">
                 <div class="form-entry">
                     <label for="destination">My trip to:</label>
                     <input  required type="text" id="destination" placeholder="Enter Location">
@@ -31,6 +31,10 @@
                     <label for="start-date">Departing:</label>
                     <input required type="date" id="start-date" placeholder="DD/MM/YYYY">
                 </div>
+                <div class="form-date">
+                  <label for="end-date">Returning:</label>
+                  <input required type="date" id="end-date" placeholder="DD/MM/YYYY">
+              </div>
                 <button type="submit" class="form-button">
                     Submit
                 </button>
@@ -39,10 +43,11 @@
                     <h1 class="title">Trip Forecast</h1>
                     <p>My Trip to: <span id="location"></span> </p> 
                     <p>Departing: <span id="departing"></span></p>
-                    <div><span id="location"></span>Your trip is <span id="days"></span> days away</div>
+                    <p>Returning: <span id="returning"></span></p>
+                    <div><span id="location"></span>Your trip would be for <span id="days"></span> day</div>
                     <div>The weather forcast for today will be: <span id="weather"> </span></div>
                     <br />
-                    <img height="500" width="500" id="destination-img" src="" alt="destination city">
+                    <img id="destination-img" src="" alt="destination city">
                 </div>
         </div>
           <footer>

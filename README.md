@@ -1,9 +1,11 @@
 # UDACITY - FEND Capstone - Travel App
-// This add a picture to your readme
+
 <img src='src\client\media\trip-pic.JPG' alt='pic of trip'>
 
 ## Description
-You will be building a travel application. It’s common to pull basic data from an API, but many applications don’t just pull the weather, they pull in multiple types of data, from different sources and occasionally one API will be required to get data from another API.
+You will be building a travel application. It’s common to pull basic data from an API, but many applications don’t just pull the weather, they pull in multiple types of data, from different sources and occasionally one API will be required to get data from another API. 
+
+ - Added counter that would count the length of the trip
 
 ## Topics
 - NodeJS 
@@ -27,6 +29,8 @@ You will be building a travel application. It’s common to pull basic data from
 
 ## Installation
 Go to Github, clone the repo. Once opened in the code editor of your choice, type npm i to install all dependencies. To access the site type npm run start and npm run build-dev. 
+
+- Make sure to install babel-polyfill in order for the tests to run successfully
 
 ## Usage
 Once the site has populated in your browser, you'll be able to use the form. Enter the city and date, then click on 'submit'.

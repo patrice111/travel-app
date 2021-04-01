@@ -4,8 +4,9 @@ function handleSubmit(event) {
     event.preventDefault();
     console.log('works');
     const destination = document.querySelector('#destination').value;
-    const date = document.querySelector('#start-date').value;
-    const counter = Math.floor((new Date(date) - new Date())/(1000*60*60*24));
+    const startDate = document.querySelector('#start-date').value;
+    const endDate = document.querySelector('#end-date').value;
+    const counter = Math.floor((new Date(endDate) - new Date(startDate))/(1000*60*60*24));
     console.log('counter==>>', counter);
     fetch(`http://api.geonames.org/searchJSON?q=${destination}&username=patkel123_`).
     then(res => res.json())
@@ -27,7 +28,8 @@ function handleSubmit(event) {
                     if (firstHit) {
                         const imageUrl = firstHit.largeImageURL;
                         document.querySelector('#location').innerHTML = destination;
-                        document.querySelector('#departing').innerHTML = date;
+                        document.querySelector('#departing').innerHTML = startDate;
+                        document.querySelector('#returning').innerHTML = endDate;
                         document.querySelector('#days').innerHTML = counter;
                         document.querySelector('#weather').innerHTML = `High: ${high_temp}F, Low: ${low_temp}F`;
                         document.querySelector('#destination-img').src = imageUrl;
