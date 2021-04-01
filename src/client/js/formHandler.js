@@ -8,41 +8,72 @@ function handleSubmit(event) {
     const endDate = document.querySelector('#end-date').value;
     const counter = Math.floor((new Date(endDate) - new Date(startDate))/(1000*60*60*24));
     console.log('counter==>>', counter);
-    fetch(`http://api.geonames.org/searchJSON?q=${destination}&username=patkel123_`).
-    then(res => res.json())
-    .then(data => {
-        const result = data.geonames[0];
-        console.log('results==>>', result);
-        if (result) {
-            const {lat, lng} = result
-            fetch(`https://api.weatherbit.io/v2.0/forecast/daily?units=I&lat=${lat}&lon=${lng}&key=24d9db5c095b44058759893673f52450`).
-            then(res => res.json())
-            .then(data => {
-                console.log('result waetherbit==>>', data);
-                const {low_temp, high_temp} = data.data[0];
-                fetch(`https://pixabay.com/api?key=20848612-37c1bada72f829ffcc89afd88&q=${destination}`).
-                then(res => res.json())
-                .then(data => {
-                    console.log('result pixabay==>>', data);
-                    const firstHit = data.hits[0];
-                    if (firstHit) {
-                        const imageUrl = firstHit.largeImageURL;
-                        document.querySelector('#location').innerHTML = destination;
-                        document.querySelector('#departing').innerHTML = startDate;
-                        document.querySelector('#returning').innerHTML = endDate;
-                        document.querySelector('#days').innerHTML = counter;
-                        document.querySelector('#weather').innerHTML = `High: ${high_temp}F, Low: ${low_temp}F`;
-                        document.querySelector('#destination-img').src = imageUrl;
-                        document.querySelector('#form-info').style.visibility = 'visible';
-                    }
-                })
-                .catch(err => console.log('er in weatherbit api==>>', err));
-            })
-            .catch(err => console.log('er in weatherbit api==>>', err));
-        }
-    })
+        if (destination && startDate && endDate) {
+            const data = {
+              destination: destination,
+              startDate: startDate,
+              endDate: endDate,
+              counter: counter,
+              }; 
+            getWeather(data).then(async (res) => {
+               try {
+                const resultEntry = await res.json();
+                if (resultEntry) {
+                 document.querySelector('#location').innerHTML = `My Trip to: ${destination}`;
+                                document.querySelector('#departing').innerHTML = `Your Trip will start on: ${startDate}`;
+                                document.querySelector('#returning').innerHTML = `Your Trip will end on: ${endDate}`;
+                                document.querySelector('#days').innerHTML = `Your Trip will be for: ${counter} days`;
+                                document.querySelector('#icon').innerHTML = `<img class="icon" src="https://www.weatherbit.io/static/img/icons/${resultEntry.icon}.png" alt="Forecast Icons">`;
+                                document.querySelector('#highTemp').innerHTML = `High: ${resultEntry.highTemp}\xB0`;
+                                document.querySelector('#lowTemp').innerHTML = `Low: ${resultEntry.lowTemp}\xB0`;
+                                document.querySelector('#destination-img').innerHTML = `<img class=“destination-img” height= 250px; width= 250px; src=${resultEntry.image}  alt="City Image">`;
+                                document.querySelector('#form-info').style.visibility = 'visible';
+                }
+              } catch (error) {
+                alert("error occoured! try again.");
+              }
+            });
+          } else {
+            alert("Please enter city and date!");
+          }
+
+    //             })
+    //             .catch(err => console.log('er in weatherbit api==>>', err));
+    //         })
+    //         .catch(err => console.log('er in weatherbit api==>>', err));
+    //     }
+    // })
+    //                 if (firstHit) {
+    //                     const imageUrl = firstHit.largeImageURL;
+    //                     document.querySelector('#location').innerHTML = destination;
+    //                     document.querySelector('#departing').innerHTML = startDate;
+    //                     document.querySelector('#returning').innerHTML = endDate;
+    //                     document.querySelector('#days').innerHTML = counter;
+    //                     document.querySelector('#weather').innerHTML = `High: ${high_temp}F, Low: ${low_temp}F`;
+    //                     document.querySelector('#destination-img').src = imageUrl;
+    //                     document.querySelector('#form-info').style.visibility = 'visible';
+    //                 }
+    //             })
+    //             .catch(err => console.log('er in weatherbit api==>>', err));
+    //         })
+    //         .catch(err => console.log('er in weatherbit api==>>', err));
+    //     }
+    // })
 
 }
 
-    
+const getWeather = async (data) => {
+    return await fetch(`http://localhost:8081/getWeather`, {
+      method: "POST",
+      mode: "cors",
+      credentials: "same-origin",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  };
+
+
 export { handleSubmit }
